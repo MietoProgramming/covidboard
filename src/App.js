@@ -62,7 +62,7 @@ function App() {
         method: "GET",
         redirect: "follow",
         // from: "2020-01-01T00:00:00Z",
-        // to: `${date.getFullYear}-${date.getMonth}-${date.getDay}T${date.getHours}:${date.getMinutes}:${date.getMilliseconds}`,
+        // to: `${date.getFullYear}-${date.getMonth}-${date.getDay}T${date.getHours}:${date.getMinutes}:${date.getMilliseconds}`, TODO: Use in the future
       };
       console.log(name);
       fetch(`https://api.covid19api.com/live/country/${cName}`, requestOptions)
