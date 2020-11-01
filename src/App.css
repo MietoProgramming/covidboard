@@ -50,7 +50,7 @@
       -ms-flex-align: center;
           align-items: center;
   margin: auto;
-  padding: auto;
+  padding: 10px;
 }
 
 .stats {
