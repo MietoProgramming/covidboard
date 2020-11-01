@@ -98,7 +98,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="main">
       <div className="background"></div>
       <div className="App">
         <Stats />

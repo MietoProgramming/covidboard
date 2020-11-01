@@ -16,13 +16,13 @@ $data_font: 'Syne Mono', monospace;
     border-radius: 20px;
     box-shadow: 3px 3px $c_sgrey;
     background-color: $c_grey;
-    padding: 40px;
+    padding: 8%;
     width: fit-content;
     height: fit-content;
 }
 
 .background {
-    position: absolute;
+    position: fixed;
     top: -30%;
     z-index: -1;
     background-image: url("img/background.jpg");
@@ -34,7 +34,7 @@ $data_font: 'Syne Mono', monospace;
 }
 
 .App{
-    padding: 20px;
+    padding: 2%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 
@@ -57,7 +57,7 @@ $data_font: 'Syne Mono', monospace;
     line-height: 35px; 
     font-family: $data_font;
     h1{
-        margin-bottom: 20px;
+        margin-bottom: 5%;
         font-family: inherit;
     }
     h3 {
@@ -66,12 +66,12 @@ $data_font: 'Syne Mono', monospace;
 }
 
 .select{
-    margin-top: 30px;
+    margin-top: 5%;
 }
 
 .country{
     width: 100%;
-    margin: 50px;
+    margin: 10%;
     text-align: center;
     h1{
         font-size: 98px;
@@ -80,5 +80,41 @@ $data_font: 'Syne Mono', monospace;
     p{
         font-size: 48px;
         font-family: $data_font;
+    }
+}
+
+@media only screen and  (max-width: 970px)
+{
+    .stats{
+        width: 100%;
+        margin-bottom: 10%;
+        text-align: center;
+        height: 50vh;
+        padding: 0px;
+        padding-top: 20px;
+    }
+
+
+    .App{
+        padding: 5%;
+        display: block;
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+
+    .country{
+        h1{
+            font-size: 56px;
+        }
+        p{
+            font-size: 34px;
+        }
+    }
+
+    .mainBox{
+        padding: 0px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        min-width: 100%;
     }
 }
