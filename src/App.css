@@ -1,4 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Syne+Mono&display=swap");
 * {
-  margin: 0;
+  margin: 0px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: -30%;
+  z-index: -1;
+  background-image: url("img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 130vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.App {
+  padding: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr;
+}
+
+.mainBox {
+  border-radius: 20px;
+  -webkit-box-shadow: 3px 3px rgba(37, 39, 39, 0.34);
+          box-shadow: 3px 3px rgba(37, 39, 39, 0.34);
+  background-color: rgba(178, 189, 187, 0.6);
+  padding: 40px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  padding: auto;
+}
+
+.stats {
+  border-radius: 20px;
+  -webkit-box-shadow: 3px 3px rgba(37, 39, 39, 0.34);
+          box-shadow: 3px 3px rgba(37, 39, 39, 0.34);
+  background-color: rgba(178, 189, 187, 0.6);
+  padding: 40px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  letter-spacing: 1px;
+  line-height: 35px;
+  font-family: "Syne Mono", monospace;
+}
+
+.stats h1 {
+  margin-bottom: 20px;
+  font-family: inherit;
+}
+
+.stats h3 {
+  font-family: inherit;
+}
+
+.select {
+  margin-top: 30px;
+}
+
+.country {
+  width: 100%;
+  margin: 50px;
+  text-align: center;
+}
+
+.country h1 {
+  font-size: 98px;
+  margin-bottom: 10%;
+}
+
+.country p {
+  font-size: 48px;
+  font-family: "Syne Mono", monospace;
 }
 /*# sourceMappingURL=App.css.map */

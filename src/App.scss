@@ -1,6 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Syne+Mono&display=swap');
+
+
+
 *{
-    margin: 0;
+    margin: 0px;
+    font-family: 'Noto Sans KR', sans-serif; 
 }
 
-App {
+$c_grey: rgba(178,189,187,0.6);
+$c_sgrey: rgba(37, 39, 39, 0.34);
+$data_font: 'Syne Mono', monospace;
+
+
+@mixin boxTheme {
+    border-radius: 20px;
+    box-shadow: 3px 3px $c_sgrey;
+    background-color: $c_grey;
+    padding: 40px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.background {
+    position: absolute;
+    top: -30%;
+    z-index: -1;
+    background-image: url("img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.App{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+}
+
+.mainBox{
+    @include boxTheme;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: auto;
+}
+
+
+.stats{
+    @include boxTheme;
+    letter-spacing: 1px;
+    line-height: 35px; 
+    font-family: $data_font;
+    h1{
+        margin-bottom: 20px;
+        font-family: inherit;
+    }
+    h3 {
+        font-family: inherit;
+    }
+}
+
+.select{
+    margin-top: 30px;
+}
+
+.country{
+    width: 100%;
+    margin: 50px;
+    text-align: center;
+    h1{
+        font-size: 98px;
+        margin-bottom: 10%;
+    }
+    p{
+        font-size: 48px;
+        font-family: $data_font;
+    }
 }

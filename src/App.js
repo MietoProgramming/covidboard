@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Search from "./Search.js";
-import Stats from "./Stats.js";
+import Search from "./Search.jsx";
+import Stats from "./Stats.jsx";
 import Country from "./Country.jsx";
 import Select from "./Select.jsx";
 
@@ -11,34 +11,40 @@ function App() {
   const [allCountries, SetAllCountries] = useState();
   const [error, SetError] = useState(false);
 
-useEffect(() => {
-fetchAllCountries();
-}, [])
+  useEffect(() => {
+    fetchAllCountries();
+  }, []);
 
-useEffect(() => {
-
-},[allCountries])
+  useEffect(() => {}, [allCountries]);
 
   useEffect(() => {
-    if(countryName !== ""){
-    fetchCountry(countryName);}
+    if (countryName !== "") {
+      fetchCountry(countryName);
+    }
   }, [countryName]);
 
-  const SetCountryData = (name, active, confirmed, deaths, recovered, countryCode) => {
-    SetCountry({ name, active, confirmed, deaths, recovered, countryCode});
+  const SetCountryData = (
+    name,
+    active,
+    confirmed,
+    deaths,
+    recovered,
+    countryCode
+  ) => {
+    SetCountry({ name, active, confirmed, deaths, recovered, countryCode });
   };
 
-const fetchAllCountries = () => {
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
+  const fetchAllCountries = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
 
-  fetch(`https://api.covid19api.com/countries`, requestOptions)
-    .then((response) => response.json())
-    .then((r) => SetAllCountries(r))
-    .catch((error) => console.log("error", error));
-}
+    fetch(`https://api.covid19api.com/countries`, requestOptions)
+      .then((response) => response.json())
+      .then((r) => SetAllCountries(r))
+      .catch((error) => console.log("error", error));
+  };
 
   const fetchCountry = (cName) => {
     if (cName !== "") {
@@ -74,23 +80,40 @@ const fetchAllCountries = () => {
           countryCode = r[1].CountryCode;
           console.log(r[1]);
           SetError(false);
-          SetCountryData(name, active, confirmed, deaths, recovered, countryCode);
+          SetCountryData(
+            name,
+            active,
+            confirmed,
+            deaths,
+            recovered,
+            countryCode
+          );
         })
-        .catch((error) => {console.log("error", error);
-        SetCountry({});
-      SetError(true);});
+        .catch((error) => {
+          console.log("error", error);
+          SetCountry({});
+          SetError(true);
+        });
     }
   };
 
   return (
-    <div className="App">
-      <Search SetCountryName={SetCountryName} />
-      {allCountries && <Select allCountries={allCountries} SetCountryName={SetCountryName} />}
-      <Stats />
-      {error && 
-      <h1>Something went wrong! Try another country.</h1>
-      }
-      {country.name && <Country country={country} />}
+    <div>
+      <div className="background"></div>
+      <div className="App">
+        <Stats />
+        <div className="mainBox">
+          <Search SetCountryName={SetCountryName} />
+          {allCountries && (
+            <Select
+              allCountries={allCountries}
+              SetCountryName={SetCountryName}
+            />
+          )}
+          {error && <h1>Something went wrong! Try another country.</h1>}
+          {country.name && <Country country={country} />}
+        </div>
+      </div>
     </div>
   );
 }

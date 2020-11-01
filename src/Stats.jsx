@@ -21,7 +21,7 @@ const Stats = () => {
 
   if (!glob) {
     return (
-      <div>
+      <div className="stats">
         <h1>Global stats</h1>
         <h3>NewConfirmed: 0</h3>
         <h3>TotalConfirmed: 0</h3>
@@ -34,7 +34,7 @@ const Stats = () => {
   }
 
   return (
-    <div>
+    <div className="stats">
       <h1>Global stats</h1>
       <h3>NewConfirmed: {glob.Global.NewConfirmed}</h3>
       <h3>TotalConfirmed: {glob.Global.TotalConfirmed}</h3>

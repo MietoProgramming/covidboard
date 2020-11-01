@@ -5,7 +5,6 @@ const Search = ({ SetCountryName }) => {
 
   const onKeyType = (e) => {
     SearchText(e.target.value);
-    console.log(e.target.value);
   };
 
   const fixSearchText = () => {

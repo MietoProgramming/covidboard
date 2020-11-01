@@ -6,9 +6,9 @@ const Country = ({country}) => {
         <div className="country">
             <img src={`https://www.countryflags.io/${country.countryCode}/flat/64.png`}/>
             <h1>{country.name}</h1>
-            <h1>{country.active}</h1>
-            <h1>{country.confirmed}</h1>
-            <h1>{country.deaths}</h1>
+            <p>Active cases: {country.active}</p>
+            <p>Confirmed cases: {country.confirmed}</p>
+            <p>Deaths: {country.deaths}</p>
         </div>
     )
 }
