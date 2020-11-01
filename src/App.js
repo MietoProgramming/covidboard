@@ -1,23 +1,87 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Search from "./Search.js";
+import Stats from "./Stats.js";
+import Country from "./Country.jsx";
+import Select from "./Select.jsx";
 
 function App() {
+  const [countryName, SetCountryName] = useState("");
+  const [country, SetCountry] = useState({});
+  const [allCountries, SetAllCountries] = useState([]);
+
+useEffect(() => {
+fetchAllCountries();
+}, [])
+
+useEffect(() => {
+
+},[allCountries])
+
+  useEffect(() => {
+    if(countryName !== ""){
+    fetchCountry(countryName);}
+  }, [countryName]);
+
+  const SetCountryData = (name, active, confirmed, deaths, recovered) => {
+    SetCountry({ name, active, confirmed, deaths, recovered });
+  };
+
+const fetchAllCountries = () => {
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(`https://api.covid19api.com/countries`, requestOptions)
+    .then((response) => response.json())
+    .then((r) => SetAllCountries(r))
+    .catch((error) => console.log("error", error));
+}
+
+  const fetchCountry = (cName) => {
+    if (cName !== "") {
+      var active = 0,
+        confirmed = 0,
+        deaths = 0,
+        recovered = 0,
+        name = "";
+      // const date = Date.now();
+      // console.log(
+      //   `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}T${date.getHours()}:${date.getMinutes()}:${date.getMilliseconds()}`
+      // );
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        // from: "2020-01-01T00:00:00Z",
+        // to: `${date.getFullYear}-${date.getMonth}-${date.getDay}T${date.getHours}:${date.getMinutes}:${date.getMilliseconds}`,
+      };
+      console.log(name);
+      fetch(`https://api.covid19api.com/live/country/${cName}`, requestOptions)
+        .then((response) => response.json())
+        .then((r) => {
+          console.log(r);
+          for (var i = 0; i < r.length; i++) {
+            var day = r[i];
+            active += day.Active;
+            confirmed += day.Confirmed;
+            deaths += day.Deaths;
+            recovered += day.Recovered;
+          }
+          name = r[1].Country;
+          SetCountryData(name, active, confirmed, deaths, recovered);
+        })
+        .catch((error) => console.log("error", error));
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search SetCountryName={SetCountryName} />
+      <Select allCountries={allCountries} SetCountryName={SetCountryName} />
+       {/* TODO: Refresh select */}
+      <Stats />
+      {country && <Country country={country} />}
     </div>
   );
 }
