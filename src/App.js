@@ -8,7 +8,8 @@ import Select from "./Select.jsx";
 function App() {
   const [countryName, SetCountryName] = useState("");
   const [country, SetCountry] = useState({});
-  const [allCountries, SetAllCountries] = useState([]);
+  const [allCountries, SetAllCountries] = useState();
+  const [error, SetError] = useState(false);
 
 useEffect(() => {
 fetchAllCountries();
@@ -23,8 +24,8 @@ useEffect(() => {
     fetchCountry(countryName);}
   }, [countryName]);
 
-  const SetCountryData = (name, active, confirmed, deaths, recovered) => {
-    SetCountry({ name, active, confirmed, deaths, recovered });
+  const SetCountryData = (name, active, confirmed, deaths, recovered, countryCode) => {
+    SetCountry({ name, active, confirmed, deaths, recovered, countryCode});
   };
 
 const fetchAllCountries = () => {
@@ -45,7 +46,8 @@ const fetchAllCountries = () => {
         confirmed = 0,
         deaths = 0,
         recovered = 0,
-        name = "";
+        name = "",
+        countryCode = "";
       // const date = Date.now();
       // console.log(
       //   `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}T${date.getHours()}:${date.getMinutes()}:${date.getMilliseconds()}`
@@ -69,19 +71,26 @@ const fetchAllCountries = () => {
             recovered += day.Recovered;
           }
           name = r[1].Country;
-          SetCountryData(name, active, confirmed, deaths, recovered);
+          countryCode = r[1].CountryCode;
+          console.log(r[1]);
+          SetError(false);
+          SetCountryData(name, active, confirmed, deaths, recovered, countryCode);
         })
-        .catch((error) => console.log("error", error));
+        .catch((error) => {console.log("error", error);
+        SetCountry({});
+      SetError(true);});
     }
   };
 
   return (
     <div className="App">
       <Search SetCountryName={SetCountryName} />
-      <Select allCountries={allCountries} SetCountryName={SetCountryName} />
-       {/* TODO: Refresh select */}
+      {allCountries && <Select allCountries={allCountries} SetCountryName={SetCountryName} />}
       <Stats />
-      {country && <Country country={country} />}
+      {error && 
+      <h1>Something went wrong! Try another country.</h1>
+      }
+      {country.name && <Country country={country} />}
     </div>
   );
 }
